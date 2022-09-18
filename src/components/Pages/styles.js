@@ -1,10 +1,20 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+import { device } from "../../screenSize";
+
 export const Country = styled.div`
   margin: 80px 80px 0 80px;
   display: flex;
   flex-direction: column;
+
+  @media screen and ${device.tablet} {
+    margin: 60px 40px 0 40px;
+  }
+
+  @media screen and ${device.mobileL} {
+    margin: 40px 20px 0 20px;
+  }
 `;
 
 export const BackLinkButton = styled(Link)`
@@ -21,6 +31,14 @@ export const BackLinkButton = styled(Link)`
   transition: text-decoration 0.5s ease-in-out;
   box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.18);
 
+  @media screen and ${device.tablet} {
+    margin-bottom: 85px;
+  }
+
+  @media screen and ${device.mobileL} {
+    margin-bottom: 100px;
+  }
+
   span {
     padding-left: 12px;
   }
@@ -35,13 +53,31 @@ export const CountryInfo = styled.div`
   height: 401px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 145px;
+  column-gap: 90px;
+
+  @media screen and ${device.laptop} {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 50px;
+  }
+
+  @media screen and ${device.tablet} {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  @media screen and ${device.mobileL} {
+    height: auto;
+  }
 `;
 
 export const CountryInfoImage = styled.img`
   width: 100%;
   height: 401px;
   object-fit: cover;
+  box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+
+  @media screen and ${device.mobileL} {
+    height: 300px;
+  }
 `;
 
 export const CountryInfoRemaining = styled.div`
@@ -59,11 +95,19 @@ export const CountryInfoInnerGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   column-gap: 15px;
+
+  @media screen and ${device.mobileL} {
+    grid-template-columns: repeat(1, 1fr);
+  }
 `;
 
-export const CountruInfoLeft = styled.div``;
+export const CountryInfoLeft = styled.div``;
 
-export const CountryInfoRight = styled.div``;
+export const CountryInfoRight = styled.div`
+  @media screen and ${device.mobileL} {
+    margin-top: 30px;
+  }
+`;
 
 export const CountryInfoSpanPara = styled.p`
   margin-bottom: 15px;
@@ -76,4 +120,41 @@ export const CountryInfoSpanBold = styled.span`
 
 export const CountryInfoSpanLight = styled.span`
   font-size: 16px;
+`;
+
+export const CountryInfoBordersList = styled.div`
+  margin-top: 20px 0 0 0;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  @media screen and ${device.tablet} {
+    margin-bottom: 60px;
+  }
+`;
+
+export const CountryInfoBorder = styled.div`
+  width: 100px;
+  height: 32px;
+  margin: 8px 10px 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+  background: ${({ theme }) => theme.element};
+  border-radius: 4px;
+  box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.15);
+  transition: all 0.2s ease-in-out;
+
+  @media screen and ${device.mobileL} {
+    width: 80px;
+    height: 35px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 `;

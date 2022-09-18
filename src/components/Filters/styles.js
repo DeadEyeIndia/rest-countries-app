@@ -1,14 +1,26 @@
 import styled from "styled-components";
 
+import { device } from "../../screenSize";
+
 export const Form = styled.form`
-  margin-left: 80px;
   display: flex;
   align-items: center;
-  width: 480px;
+  width: 480px !important;
+  margin-left: 80px;
   height: 56px;
   background-color: ${({ theme }) => theme.element};
   border-radius: 4px;
-  box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.1);
+  box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.18);
+
+  @media screen and ${device.tablet} {
+    width: 400px !important;
+    margin-left: 40px;
+  }
+
+  @media screen and ${device.mobileL} {
+    width: 390px !important;
+    margin-left: 0;
+  }
 `;
 
 export const SearchSymbol = styled.div`
@@ -29,7 +41,17 @@ export const DropDownContainer = styled.div`
   color: ${({ theme }) => theme.text};
   background: ${({ theme }) => theme.element};
   border-radius: 4px;
-  box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.1);
+  box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.18);
+
+  @media screen and ${device.tablet} {
+    width: 170px;
+    margin-right: 40px;
+  }
+
+  @media screen and ${device.mobileL} {
+    margin-top: 49px;
+    margin-right: 220px;
+  }
 `;
 
 export const DropDownButton = styled.div`

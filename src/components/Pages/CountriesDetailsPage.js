@@ -14,17 +14,27 @@ import {
   CountryInfoRemaining,
   CountryInfoName,
   CountryInfoInnerGrid,
-  CountruInfoLeft,
+  CountryInfoLeft,
   CountryInfoRight,
   CountryInfoSpanBold,
   CountryInfoSpanLight,
   CountryInfoSpanPara,
+  CountryInfoBordersList,
+  CountryInfoBorder,
 } from "./styles";
 
 const CountriesDetailsPage = () => {
   const { name } = useParams();
 
   const { data, isFetching } = useGetCountryDetailsQuery(name);
+
+  let country;
+
+  if (data?.length === 1) {
+    country = data[0];
+  } else if (data?.length > 1) {
+    country = data[data?.length - 1];
+  }
 
   console.log(data);
 
@@ -37,73 +47,90 @@ const CountriesDetailsPage = () => {
       </BackLinkButton>
 
       <CountryInfo>
-        <CountryInfoImage src={data[0]?.flags?.svg} />
+        <CountryInfoImage src={country?.flags?.svg} />
         <CountryInfoRemaining>
-          <CountryInfoName>{data[0]?.name}</CountryInfoName>
+          <CountryInfoName>{country?.name}</CountryInfoName>
           <CountryInfoInnerGrid>
-            <CountruInfoLeft>
+            <CountryInfoLeft>
               <CountryInfoSpanPara>
                 <CountryInfoSpanBold>Native Name:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {data[0]?.nativeName}
+                  {country?.nativeName}
                 </CountryInfoSpanLight>
               </CountryInfoSpanPara>
               <CountryInfoSpanPara>
                 <CountryInfoSpanBold>Population:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {millify(data[0]?.population)}
+                  {country?.population?.toLocaleString("en-US")}
                 </CountryInfoSpanLight>
               </CountryInfoSpanPara>
               <CountryInfoSpanPara>
                 <CountryInfoSpanBold>Region:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {data[0]?.region}
+                  {country?.region}
                 </CountryInfoSpanLight>
               </CountryInfoSpanPara>
               <CountryInfoSpanPara>
                 <CountryInfoSpanBold>Sub Region:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {data[0]?.subregion}
+                  {country?.subregion}
                 </CountryInfoSpanLight>
               </CountryInfoSpanPara>
               <CountryInfoSpanPara>
                 <CountryInfoSpanBold>Capital:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {data[0]?.capital}
+                  {country?.capital === undefined
+                    ? "NO CAPITAL"
+                    : `${country?.capital}`}
                 </CountryInfoSpanLight>
               </CountryInfoSpanPara>
-            </CountruInfoLeft>
+            </CountryInfoLeft>
             <CountryInfoRight>
               <CountryInfoSpanPara>
                 <CountryInfoSpanBold>Top Level Domain:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {data[0]?.topLevelDomain[0]}
+                  {country?.topLevelDomain[0]}
                 </CountryInfoSpanLight>
               </CountryInfoSpanPara>
               <CountryInfoSpanPara>
                 <CountryInfoSpanBold>Currencies:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {data[0]?.currencies[0]?.name}
+                  {country?.currencies[0]?.name}
                 </CountryInfoSpanLight>
               </CountryInfoSpanPara>
               <CountryInfoSpanPara>
                 <CountryInfoSpanBold>Languages:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {data[0]?.languages?.map((language) => (
-                    <span>{language.name}, </span>
+                  {country?.languages?.map((language, idx) => (
+                    <span key={idx}>{language.name}, </span>
                   ))}
                 </CountryInfoSpanLight>
               </CountryInfoSpanPara>
             </CountryInfoRight>
           </CountryInfoInnerGrid>
+          <CountryInfoBordersList>
+            Border Countries:{" "}
+            {country["borders"] === undefined && (
+              <>
+                <CountryInfoBorder>NO Countries</CountryInfoBorder>
+              </>
+            )}
+            {country?.borders && (
+              <>
+                {country?.borders?.map((border, idx) => (
+                  <CountryInfoBorder key={idx}>{border}</CountryInfoBorder>
+                ))}
+              </>
+            )}
+          </CountryInfoBordersList>
         </CountryInfoRemaining>
       </CountryInfo>
     </Country>

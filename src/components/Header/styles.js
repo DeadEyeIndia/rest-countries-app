@@ -1,24 +1,45 @@
 import styled from "styled-components";
 
+import { device } from "../../screenSize";
+
 export const HeaderContainer = styled.header`
-  height: 80px;
+  height: 80px !important;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: ${({ theme }) => theme.element};
-  box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.1);
+  box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.18);
+
+  @media screen and ${device.tablet} {
+    height: 87px !important;
+  }
+
+  @media screen and ${device.mobileL} {
+    height: 160px !important;
+  }
 `;
 
 export const Title = styled.h1`
+  font-size: normal !important;
   font-weight: 800;
   color: ${({ theme }) => theme.text};
-  margin-left: 80px;
+  margin-left: 80px !important;
+
+  @media screen and ${device.tablet} {
+    margin-left: 40px !important;
+  }
+
+  @media screen and ${device.mobileL} {
+    font-size: 24px !important;
+    margin-left: 20px !important;
+  }
 `;
 
 export const Toggler = styled.div`
-  margin-right: 80px;
+  margin-right: 80px !important;
   color: ${({ theme }) => theme.text};
+  font-size: normal;
   display: flex;
   align-items: center;
   user-select: none;
@@ -29,6 +50,15 @@ export const Toggler = styled.div`
   &:hover {
     cursor: pointer;
     border: 1px solid ${({ theme }) => theme.border};
+  }
+
+  @media screen and ${device.tablet} {
+    margin-right: 40px !important;
+  }
+
+  @media screen and ${device.mobileL} {
+    font-size: 14px !important;
+    margin-right: 20px !important;
   }
 `;
 

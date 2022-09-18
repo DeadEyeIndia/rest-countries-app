@@ -14,14 +14,14 @@ import {
 const Main = () => {
   const { data, isFetching } = useGetAllCountriesQuery();
 
-  // console.log(data);
+  console.log(data);
 
   if (isFetching) return <Loader />;
 
   return (
     <CountriesList>
       {data.map((country) => (
-        <CountryItem key={country?.numericCode} to={`/name/${country?.name}`}>
+        <CountryItem key={country?.numericCode} to={`/${country?.name}`}>
           <CountryImage src={country?.flag} />
           <CountryDetails>
             <CountryName>{country?.name}</CountryName>
@@ -34,7 +34,11 @@ const Main = () => {
             </CountryItemDetail>
             <CountryItemDetail>
               Capital:{" "}
-              <span style={{ fontWeight: 300 }}>{country?.capital}</span>
+              <span style={{ fontWeight: 300 }}>
+                {country?.capital === undefined
+                  ? "NO CAPITAL"
+                  : `${country?.capital}`}
+              </span>
             </CountryItemDetail>
           </CountryDetails>
         </CountryItem>

@@ -31,11 +31,7 @@ function App() {
 
         <Routes>
           <Route exact path="/" element={<Homepage theme={theme} />} />
-          <Route
-            exact
-            path={`/name/:name`}
-            element={<CountriesDetailsPage />}
-          />
+          <Route exact path={`/:name`} element={<CountriesDetailsPage />} />
         </Routes>
       </ThemeProvider>
     </>
