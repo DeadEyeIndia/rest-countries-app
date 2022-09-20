@@ -14,7 +14,7 @@ import {
 const Main = () => {
   const { data, isFetching } = useGetAllCountriesQuery();
 
-  console.log(data);
+  // console.log(data);
 
   if (isFetching) return <Loader />;
 
@@ -24,10 +24,16 @@ const Main = () => {
         <CountryItem key={country?.numericCode} to={`/${country?.name}`}>
           <CountryImage src={country?.flag} />
           <CountryDetails>
-            <CountryName>{country?.name}</CountryName>
+            <CountryName>
+              {country?.name?.length > 40
+                ? country?.altSpellings[country?.altSpellings?.length - 1]
+                : country?.name}
+            </CountryName>
             <CountryItemDetail>
               Poplulation:{" "}
-              <span style={{ fontWeight: 300 }}>{country?.population}</span>
+              <span style={{ fontWeight: 300 }}>
+                {country?.population?.toLocaleString("en-US")}
+              </span>
             </CountryItemDetail>
             <CountryItemDetail>
               Region: <span style={{ fontWeight: 300 }}>{country?.region}</span>

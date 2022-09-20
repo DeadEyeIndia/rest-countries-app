@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
-import millify from "millify";
 
 import { useGetCountryDetailsQuery } from "../../services/countriesApi";
 import Loader from "../Loader";
@@ -33,10 +32,10 @@ const CountriesDetailsPage = () => {
   if (data?.length === 1) {
     country = data[0];
   } else if (data?.length > 1) {
-    country = data[data?.length - 1];
+    country = data?.filter((d) => d?.name === name);
   }
 
-  console.log(data);
+  // console.log(country);
 
   if (isFetching) return <Loader />;
   return (
@@ -47,44 +46,44 @@ const CountriesDetailsPage = () => {
       </BackLinkButton>
 
       <CountryInfo>
-        <CountryInfoImage src={country?.flags?.svg} />
+        <CountryInfoImage src={country[0]?.flags?.svg} />
         <CountryInfoRemaining>
-          <CountryInfoName>{country?.name}</CountryInfoName>
+          <CountryInfoName>{country[0]?.name}</CountryInfoName>
           <CountryInfoInnerGrid>
             <CountryInfoLeft>
               <CountryInfoSpanPara>
                 <CountryInfoSpanBold>Native Name:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {country?.nativeName}
+                  {country[0]?.nativeName}
                 </CountryInfoSpanLight>
               </CountryInfoSpanPara>
               <CountryInfoSpanPara>
                 <CountryInfoSpanBold>Population:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {country?.population?.toLocaleString("en-US")}
+                  {country[0]?.population?.toLocaleString("en-US")}
                 </CountryInfoSpanLight>
               </CountryInfoSpanPara>
               <CountryInfoSpanPara>
                 <CountryInfoSpanBold>Region:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {country?.region}
+                  {country[0]?.region}
                 </CountryInfoSpanLight>
               </CountryInfoSpanPara>
               <CountryInfoSpanPara>
                 <CountryInfoSpanBold>Sub Region:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {country?.subregion}
+                  {country[0]?.subregion}
                 </CountryInfoSpanLight>
               </CountryInfoSpanPara>
               <CountryInfoSpanPara>
                 <CountryInfoSpanBold>Capital:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {country?.capital === undefined
+                  {country[0]?.capital === undefined
                     ? "NO CAPITAL"
                     : `${country?.capital}`}
                 </CountryInfoSpanLight>
@@ -95,21 +94,21 @@ const CountriesDetailsPage = () => {
                 <CountryInfoSpanBold>Top Level Domain:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {country?.topLevelDomain[0]}
+                  {country[0]?.topLevelDomain[0]}
                 </CountryInfoSpanLight>
               </CountryInfoSpanPara>
               <CountryInfoSpanPara>
                 <CountryInfoSpanBold>Currencies:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {country?.currencies[0]?.name}
+                  {country[0]?.currencies[0]?.name}
                 </CountryInfoSpanLight>
               </CountryInfoSpanPara>
               <CountryInfoSpanPara>
                 <CountryInfoSpanBold>Languages:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {country?.languages?.map((language, idx) => (
+                  {country[0]?.languages?.map((language, idx) => (
                     <span key={idx}>{language.name}, </span>
                   ))}
                 </CountryInfoSpanLight>
@@ -123,9 +122,9 @@ const CountriesDetailsPage = () => {
                 <CountryInfoBorder>NO Countries</CountryInfoBorder>
               </>
             )}
-            {country?.borders && (
+            {country[0]?.borders && (
               <>
-                {country?.borders?.map((border, idx) => (
+                {country[0]?.borders?.map((border, idx) => (
                   <CountryInfoBorder key={idx}>{border}</CountryInfoBorder>
                 ))}
               </>
