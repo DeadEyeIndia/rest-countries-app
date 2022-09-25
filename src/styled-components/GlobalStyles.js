@@ -22,6 +22,20 @@ export const GlobalStyles = createGlobalStyle`
         transition: all 0.2s ease;
     }
 
+    select {
+        background-color: transparent;
+        border: none;
+        padding: 0 1em 0 0;
+        margin: 0;
+        cursor: inherit;
+        line-height: inherit;
+        background-color: transparent;
+        background-image: none;
+        width: 100%;
+        z-index: 1;
+        outline: none;
+    }
+
     input {
         color: ${({ theme }) => theme.input};
         border: none;

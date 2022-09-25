@@ -7,6 +7,7 @@ import { GlobalStyles } from "./styled-components/GlobalStyles";
 import { lightMode, darkMode } from "./styled-components/theme";
 import Homepage from "./components/Pages/Homepage";
 import CountriesDetailsPage from "./components/Pages/CountriesDetailsPage";
+import { Footer, Links } from "./styles";
 
 function App() {
   const defaultTheme = window.matchMedia(
@@ -33,6 +34,22 @@ function App() {
           <Route exact path="/" element={<Homepage theme={theme} />} />
           <Route exact path={`/:name`} element={<CountriesDetailsPage />} />
         </Routes>
+
+        <Footer>
+          Challenge by
+          <Links href="https://www.frontendmentor.io" target="_blank">
+            Frontend Mentor.
+          </Links>
+          <span> </span>
+          Coded by
+          <Links
+            href="https://github.com/DeadEyeIndia/rest-countries-app"
+            target="_blank"
+          >
+            {" "}
+            DeadEyeIndia
+          </Links>
+        </Footer>
       </ThemeProvider>
     </>
   );

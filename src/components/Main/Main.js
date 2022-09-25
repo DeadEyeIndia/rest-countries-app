@@ -1,7 +1,5 @@
 import React from "react";
 
-import Loader from "../Loader";
-import { useGetAllCountriesQuery } from "../../services/countriesApi";
 import {
   CountriesList,
   CountryItem,
@@ -11,16 +9,10 @@ import {
   CountryItemDetail,
 } from "./style";
 
-const Main = () => {
-  const { data, isFetching } = useGetAllCountriesQuery();
-
-  // console.log(data);
-
-  if (isFetching) return <Loader />;
-
+const Main = ({ countries }) => {
   return (
     <CountriesList>
-      {data.map((country) => (
+      {countries?.map((country) => (
         <CountryItem key={country?.numericCode} to={`/${country?.name}`}>
           <CountryImage src={country?.flag} />
           <CountryDetails>

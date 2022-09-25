@@ -2,6 +2,25 @@ import styled from "styled-components";
 
 import { device } from "../../screenSize";
 
+export const FilterOptions = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 48px !important;
+
+  @media screen and ${device.tablet} {
+    flex-direction: row !important;
+    margin-top: 48px !important;
+  }
+
+  @media screen and ${device.mobileL} {
+    flex-direction: column !important;
+    margin-top: 30px !important;
+  }
+`;
+
 export const Form = styled.form`
   display: flex;
   align-items: center;
@@ -21,6 +40,10 @@ export const Form = styled.form`
     width: 390px !important;
     margin-left: 0;
   }
+
+  @media screen and ${device.mobile} {
+    width: 340px !important;
+  }
 `;
 
 export const SearchSymbol = styled.div`
@@ -34,83 +57,23 @@ export const InputSubmit = styled.input`
 export const DropDownContainer = styled.div`
   position: relative;
   width: 200px;
-  height: 56px;
+  padding: 0;
   margin-right: 80px;
-  display: flex;
-  flex-direction: column;
-  color: ${({ theme }) => theme.text};
-  background: ${({ theme }) => theme.element};
+  background-color: ${({ theme }) => theme.element};
   border-radius: 4px;
   box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.18);
-
-  @media screen and ${device.tablet} {
-    width: 170px;
-    margin-right: 40px;
-  }
-
-  @media screen and ${device.mobileL} {
-    margin-top: 49px;
-    margin-right: 220px;
-  }
-`;
-
-export const DropDownButton = styled.div`
-  padding: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: all 0.2s ease;
-  user-select: none;
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export const DropDownIcon = styled.span``;
-
-export const DropDownContent = styled.div`
-  width: 100%;
-  position: absolute;
-  top: 110%;
-  left: 0;
-  padding: 12px 18px;
-  background: ${({ theme }) => theme.element};
-  border-radius: 4px;
-  box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.1);
-`;
-
-export const DropDownItem = styled.div`
-  padding: 5px;
-  transition: all 0.2s ease;
-  user-select: none;
-
-  &:hover {
-    cursor: pointer;
-  }
+  overflow: hidden;
 `;
 
 export const DropDownSelect = styled.select`
   width: 100%;
-  height: 100%;
-  outline: none;
-  border: none;
-
-  padding: 0 18px;
   color: ${({ theme }) => theme.text};
-  background: transparent;
-  //   box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.1);
-`;
+  background: ${({ theme }) => theme.element};
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 14px;
+  padding: 20px 0;
 
-export const Spacing = styled.div`
-  width: 18px;
-`;
-
-export const DropDownOption = styled.option`
-  outline: none;
-  border: none;
-  width: 100%;
-  height: 56px;
-  padding: 2px 5px;
-  background: ${({ theme }) => theme.background};
+  &:hover {
+    cursor: pointer;
+  }
 `;

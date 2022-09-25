@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
-import { useGetCountryDetailsQuery } from "../../services/countriesApi";
 import Loader from "../Loader";
+import Borders from "./Borders";
+import { useGetCountryDetailsQuery } from "../../services/countriesApi";
 import {
   Country,
   BackLinkButton,
@@ -19,7 +20,7 @@ import {
   CountryInfoSpanLight,
   CountryInfoSpanPara,
   CountryInfoBordersList,
-  CountryInfoBorder,
+  NoBorderCountry,
 } from "./styles";
 
 const CountriesDetailsPage = () => {
@@ -30,7 +31,7 @@ const CountriesDetailsPage = () => {
   let country;
 
   if (data?.length === 1) {
-    country = data[0];
+    country = data;
   } else if (data?.length > 1) {
     country = data?.filter((d) => d?.name === name);
   }
@@ -85,7 +86,7 @@ const CountriesDetailsPage = () => {
                   {"  "}
                   {country[0]?.capital === undefined
                     ? "NO CAPITAL"
-                    : `${country?.capital}`}
+                    : `${country[0]?.capital}`}
                 </CountryInfoSpanLight>
               </CountryInfoSpanPara>
             </CountryInfoLeft>
@@ -101,7 +102,11 @@ const CountriesDetailsPage = () => {
                 <CountryInfoSpanBold>Currencies:</CountryInfoSpanBold>
                 <CountryInfoSpanLight>
                   {"  "}
-                  {country[0]?.currencies[0]?.name}
+                  {country[0]?.currencies === undefined ? (
+                    <>No currency</>
+                  ) : (
+                    <>{country[0]?.currencies[0]?.name}</>
+                  )}
                 </CountryInfoSpanLight>
               </CountryInfoSpanPara>
               <CountryInfoSpanPara>
@@ -117,15 +122,12 @@ const CountriesDetailsPage = () => {
           </CountryInfoInnerGrid>
           <CountryInfoBordersList>
             Border Countries:{" "}
-            {country["borders"] === undefined && (
-              <>
-                <CountryInfoBorder>NO Countries</CountryInfoBorder>
-              </>
-            )}
-            {country[0]?.borders && (
+            {country[0]?.borders === undefined ? (
+              <NoBorderCountry to="/">No Countries</NoBorderCountry>
+            ) : (
               <>
                 {country[0]?.borders?.map((border, idx) => (
-                  <CountryInfoBorder key={idx}>{border}</CountryInfoBorder>
+                  <Borders border={border} key={idx} />
                 ))}
               </>
             )}

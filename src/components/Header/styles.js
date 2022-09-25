@@ -18,6 +18,10 @@ export const HeaderContainer = styled.header`
   @media screen and ${device.mobileL} {
     height: 160px !important;
   }
+
+  @media screen and ${device.mobileL} {
+    height: 120px !important;
+  }
 `;
 
 export const Title = styled.h1`
@@ -25,14 +29,20 @@ export const Title = styled.h1`
   font-weight: 800;
   color: ${({ theme }) => theme.text};
   margin-left: 80px !important;
+  user-select: none;
 
   @media screen and ${device.tablet} {
     margin-left: 40px !important;
   }
 
   @media screen and ${device.mobileL} {
-    font-size: 24px !important;
+    font-size: 14px !important;
     margin-left: 20px !important;
+  }
+
+  @media screen and ${device.mobile} {
+    font-size: 20px !important;
+    margin-left: 10px !important;
   }
 `;
 
@@ -59,6 +69,11 @@ export const Toggler = styled.div`
   @media screen and ${device.mobileL} {
     font-size: 14px !important;
     margin-right: 20px !important;
+  }
+
+  @media screen and ${device.mobile} {
+    font-size: 12px !important;
+    margin-right: 10px !important;
   }
 `;
 

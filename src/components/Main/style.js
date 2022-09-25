@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { device } from "../../screenSize";
 
 export const CountriesList = styled.main`
-  margin: 48px 80px 0 80px;
+  margin: 48px 80px 100px 80px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: auto;
@@ -27,6 +27,11 @@ export const CountriesList = styled.main`
   @media screen and ${device.mobileL} {
     grid-template-columns: repeat(1, 1fr);
     margin: 40px 20px 0 20px;
+  }
+
+  @media screen and ${device.mobile} {
+    grid-template-columns: repeat(1, 1fr);
+    margin: 40px 10px 0 10px;
   }
 `;
 

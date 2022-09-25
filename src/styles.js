@@ -1,22 +1,13 @@
 import styled from "styled-components";
 
-import { device } from "./screenSize";
-
-export const FilterOptions = styled.div`
+export const Footer = styled.div`
   width: 100%;
+  height: 30px;
   display: flex;
-  flex-direction: row !important;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 48px !important;
+  justify-content: center;
+`;
 
-  @media screen and ${device.tablet} {
-    flex-direction: row !important;
-    margin-top: 48px !important;
-  }
-
-  @media screen and ${device.mobileL} {
-    flex-direction: column !important;
-    margin-top: 30px !important;
-  }
+export const Links = styled.a`
+  color: ${({ theme }) => theme.text};
 `;

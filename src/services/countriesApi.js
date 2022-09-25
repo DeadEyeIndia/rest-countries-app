@@ -5,7 +5,7 @@ const baseUrl = "https://restcountries.com/v2";
 const createRequest = (url) => ({ url });
 
 export const countriesApi = createApi({
-  reducerPath: "countries",
+  reducerPath: "countriesApi",
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getAllCountries: builder.query({
@@ -14,8 +14,18 @@ export const countriesApi = createApi({
     getCountryDetails: builder.query({
       query: (name) => createRequest(`/name/${name}`),
     }),
+    getCountryName: builder.query({
+      query: (code) => createRequest(`/alpha/${code}`),
+    }),
+    getCountriesListByRegion: builder.query({
+      query: (region) => createRequest(`/region/${region}`),
+    }),
   }),
 });
 
-export const { useGetAllCountriesQuery, useGetCountryDetailsQuery } =
-  countriesApi;
+export const {
+  useGetAllCountriesQuery,
+  useGetCountryDetailsQuery,
+  useGetCountryNameQuery,
+  useGetCountriesListByRegionQuery,
+} = countriesApi;

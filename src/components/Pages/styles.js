@@ -126,6 +126,7 @@ export const CountryInfoBordersList = styled.div`
   margin-top: 20px 0 0 0;
   font-size: 16px;
   font-weight: 600;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -135,23 +136,41 @@ export const CountryInfoBordersList = styled.div`
   }
 `;
 
-export const CountryInfoBorder = styled.div`
-  width: 100px;
-  height: 32px;
-  margin: 8px 10px 0 10px;
+export const NoBorderCountry = styled(Link)`
+  padding: 10px 5px;
+  margin: 0 10px;
+  margin: 5px 10px 0 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 300;
+  color: ${({ theme }) => theme.text};
   background: ${({ theme }) => theme.element};
   border-radius: 4px;
   box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.15);
-  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  transition: text-decoraton 0.2s ease;
+  user-select: none;
 
-  @media screen and ${device.mobileL} {
-    width: 80px;
-    height: 35px;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
   }
+`;
+
+export const CountryInfoBorder = styled(Link)`
+  padding: 10px 5px;
+  margin: 5px 10px 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.element};
+  border-radius: 4px;
+  box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  transition: text-decoraton 0.2s ease-in-out;
 
   &:hover {
     cursor: pointer;
